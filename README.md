@@ -40,8 +40,9 @@ For main changes from previous releases and known issues please refer to [CHANGE
 | Apache Spark | 2.4.x, 3.0.x, 3.1.x |
 | Scala | 2.11, 2.12 |
 | Microsoft JDBC Driver for SQL Server | 8.4.1 |
-| Microsoft SQL Server | SQL Server 2008 or later |
+| Microsoft SQL Server | SQL Server 2017 or later |
 | Azure SQL Databases | Supported |
+| SQL Graph Databases | Supported |
 
 *Note: Azure Synapse (Azure SQL DW) use is not tested with this connector. While it may work, there may be unintended consequences.*
 
@@ -107,6 +108,12 @@ For more information and explanation, visit the closed [issue](https://github.co
 The Apache Spark Connector for SQL Server and Azure SQL is based on the Spark DataSourceV1 API and SQL Server Bulk API and uses the same interface as the built-in JDBC Spark-SQL connector. This allows you to easily integrate the connector and migrate your existing Spark jobs by simply updating the format parameter with `com.microsoft.sqlserver.jdbc.spark`.
 
 To include the connector in your projects download this repository and build the jar using SBT.
+
+### Building jar package
+Install `apache-maven-3.8.1-bin` and run:
+```
+mvn package  -P spark311
+```
 
 ### Migrating from Legacy Azure SQL Connector for Spark
 
