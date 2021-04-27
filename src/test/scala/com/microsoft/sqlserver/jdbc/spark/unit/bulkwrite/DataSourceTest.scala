@@ -20,6 +20,8 @@ import org.scalatest.matchers.should.Matchers
 
 import java.sql.Connection
 
+import com.microsoft.sqlserver.jdbc.spark._
+
 class DataSourceTest extends SparkFunSuite with Matchers with SharedSparkSession {
 
   test("Schema validation between Spark DataFrame and SQL Server ResultSet") {}
