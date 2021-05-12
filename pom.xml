@@ -89,7 +89,7 @@
     <distributionManagement>
         <repository>
             <id>soleyio@Local</id>
-            <url>https://pkgs.dev.azure.com/soleyio/_packaging/soleyio%40Local/maven/v1</url>
+            <url>https://pkgs.dev.azure.com/soleyio/_packaging/soleyio/maven/v1</url>
             <releases>
                 <enabled>true</enabled>
             </releases>
@@ -101,7 +101,7 @@
     <repositories>
         <repository>
             <id>soleyio@Local</id>
-            <url>https://pkgs.dev.azure.com/soleyio/_packaging/soleyio%40Local/maven/v1</url>
+            <url>https://pkgs.dev.azure.com/soleyio/_packaging/soleyio/maven/v1</url>
             <releases>
                 <enabled>true</enabled>
             </releases>
