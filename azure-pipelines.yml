@@ -21,6 +21,10 @@ steps:
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
     goals: 'package -P spark30'
 
+- task: CmdLine@2
+  inputs:
+    script: 'cat "~/.m2/settings.xml"'
+
 # Publish
 - task: CopyFiles@2
   inputs:
