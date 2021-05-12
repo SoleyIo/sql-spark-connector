@@ -10,17 +10,41 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
+
+- task: MavenAuthenticate@0
+  inputs:
+    artifactsFeeds: 'soleyio'
+
+# - task: Maven@3
+#   inputs:
+#     mavenPomFile: 'pom.xml'
+#     mavenOptions: '-Xmx3072m'
+#     javaHomeOption: 'JDKVersion'
+#     jdkVersionOption: '1.8'
+#     jdkArchitectureOption: 'x64'
+#     publishJUnitResults: true
+#     testResultsFiles: '**/surefire-reports/TEST-*.xml'
+#     goals: 'package -P spark30'
+
 - task: Maven@3
   inputs:
     mavenPomFile: 'pom.xml'
-    mavenOptions: '-Xmx3072m'
+    goals: 'deploy -P spark30'
+    publishJUnitResults: false
     javaHomeOption: 'JDKVersion'
-    jdkVersionOption: '1.8'
-    jdkArchitectureOption: 'x64'
-    publishJUnitResults: true
-    testResultsFiles: '**/surefire-reports/TEST-*.xml'
-    goals: 'package'
-- task: CmdLine@2
-  inputs:
-    script: |
-      ls
+    mavenVersionOption: 'Default'
+    mavenAuthenticateFeed: true
+    effectivePomSkip: true
+    sonarQubeRunAnalysis: false
+
+# # Publish
+# - task: CopyFiles@2
+#   inputs:
+#     contents: 'target/*'
+#     targetFolder: $(Build.ArtifactStagingDirectory)
+
+# - task: PublishBuildArtifacts@1
+#   inputs:
+#     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+#     ArtifactName: 'SqlSparkConnectorBuildOutputs'
+#     publishLocation: 'Container'
