@@ -95,7 +95,29 @@
             <id>ossrh</id>
             <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
         </repository>
+        <repository>
+            <id>soleyio@Local</id>
+            <url>https://pkgs.dev.azure.com/soleyio/_packaging/soleyio%40Local/maven/v1</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
     </distributionManagement>
+    <repositories>
+        <repository>
+            <id>soleyio@Local</id>
+            <url>https://pkgs.dev.azure.com/soleyio/_packaging/soleyio%40Local/maven/v1</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
     <build>
         <plugins>
             <plugin>
