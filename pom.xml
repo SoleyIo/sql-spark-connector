@@ -199,14 +199,14 @@
                         </goals>
                         <phase>test-compile</phase>
                     </execution>
-                    <execution>
+                    <!-- <execution>
                         <id>scala-doc</id>
                         <phase>prepare-package</phase>
                         <goals>
                             <goal>doc</goal>
                             <goal>doc-jar</goal>
                         </goals>
-                    </execution>
+                    </execution> -->
                 </executions>
             </plugin>
             <plugin>
