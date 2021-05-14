@@ -88,8 +88,8 @@
     </scm>
     <distributionManagement>
         <repository>
-            <id>soleyio@Local</id>
-            <url>https://pkgs.dev.azure.com/soleyio/_packaging/soleyio/maven/v1</url>
+            <id>st_test</id>
+            <url>https://pkgs.dev.azure.com/soleyio/27dedf28-5735-4da6-b1d8-8a7e1dd576cb/_packaging/st_test/maven/v1</url>
             <releases>
                 <enabled>true</enabled>
             </releases>
@@ -100,8 +100,8 @@
     </distributionManagement>
     <repositories>
         <repository>
-            <id>soleyio@Local</id>
-            <url>https://pkgs.dev.azure.com/soleyio/_packaging/soleyio/maven/v1</url>
+            <id>st_test</id>
+            <url>https://pkgs.dev.azure.com/soleyio/27dedf28-5735-4da6-b1d8-8a7e1dd576cb/_packaging/st_test/maven/v1</url>
             <releases>
                 <enabled>true</enabled>
             </releases>
