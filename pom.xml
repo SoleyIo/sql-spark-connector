@@ -4,7 +4,7 @@
     <groupId>com.microsoft.azure</groupId>
     <artifactId>spark-mssql-connector</artifactId>
     <packaging>jar</packaging>
-    <version>1.0.1</version>
+    <version>1.0.2</version>
     <name>${project.groupId}:${project.artifactId}</name>
     <description>The Apache Spark Connector for SQL Server and Azure SQL is a high-performance connector that enables you to use transactional data in big data analytics and persists results for ad-hoc queries or reporting.</description>
     <url>https://github.com/microsoft/sql-spark-connector</url>
@@ -88,8 +88,8 @@
     </scm>
     <distributionManagement>
         <repository>
-            <id>st_test</id>
-            <url>https://pkgs.dev.azure.com/soleyio/27dedf28-5735-4da6-b1d8-8a7e1dd576cb/_packaging/st_test/maven/v1</url>
+            <id>soleyio-mvn</id>
+            <url>https://pkgs.dev.azure.com/soleyio/27dedf28-5735-4da6-b1d8-8a7e1dd576cb/_packaging/soleyio-mvn/maven/v1</url>
             <releases>
                 <enabled>true</enabled>
             </releases>
@@ -100,8 +100,8 @@
     </distributionManagement>
     <repositories>
         <repository>
-            <id>st_test</id>
-            <url>https://pkgs.dev.azure.com/soleyio/27dedf28-5735-4da6-b1d8-8a7e1dd576cb/_packaging/st_test/maven/v1</url>
+            <id>soleyio-mvn</id>
+            <url>https://pkgs.dev.azure.com/soleyio/27dedf28-5735-4da6-b1d8-8a7e1dd576cb/_packaging/soleyio-mvn/maven/v1</url>
             <releases>
                 <enabled>true</enabled>
             </releases>
@@ -199,14 +199,6 @@
                         </goals>
                         <phase>test-compile</phase>
                     </execution>
-                    <!-- <execution>
-                        <id>scala-doc</id>
-                        <phase>prepare-package</phase>
-                        <goals>
-                            <goal>doc</goal>
-                            <goal>doc-jar</goal>
-                        </goals>
-                    </execution> -->
                 </executions>
             </plugin>
             <plugin>
