@@ -20,7 +20,20 @@ steps:
     publishJUnitResults: true
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
     goals: 'package'
-- task: CmdLine@2
+
+# Publish
+- task: CopyFiles@2
   inputs:
-    script: |
-      ls
+    contents: 'dist/**'
+    targetFolder: $(Build.ArtifactStagingDirectory)
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'SoleyIoSqlSparkConnector'
+    publishLocation: 'Container'
+
+- script: |
+    echo Release pipeline will take care of deploying to DBFS.
+    echo Do not forget to restart your clusters and happy sparking.
+  displayName: 'Done'
