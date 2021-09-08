@@ -14,11 +14,11 @@
 package com.microsoft.sqlserver.jdbc.spark
 import java.sql.Connection
 
-import org.scalatest.Matchers
+import org.scalatest.matchers.should.Matchers
 import org.apache.spark.SparkFunSuite
-import org.apache.spark.sql.test.SharedSQLContext
+import org.apache.spark.sql.test.SharedSparkSession
 
-class DataSourceTest extends SparkFunSuite with Matchers with SharedSQLContext {
+class DataSourceTest extends SparkFunSuite with Matchers with SharedSparkSession {
 
   test("Schema validation between Spark DataFrame and SQL Server ResultSet") {}
 
