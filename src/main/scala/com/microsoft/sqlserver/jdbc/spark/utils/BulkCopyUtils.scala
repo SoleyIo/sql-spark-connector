@@ -187,7 +187,8 @@ object BulkCopyUtils extends Logging {
     private[spark] def getComputedCols(
         conn: Connection, 
         table: String): List[String] = {
-        val queryStr = s"SELECT name FROM sys.computed_columns WHERE object_id = OBJECT_ID('${table}');"
+        val queryStr = s"SELECT name FROM sys.computed_columns WHERE object_id = OBJECT_ID('${table}') UNION " +
+                       s"SELECT name FROM sys.columns WHERE graph_type in (2) and object_id = OBJECT_ID('${table}');"
         val computedColRs = conn.createStatement.executeQuery(queryStr)
         val computedCols = ListBuffer[String]()
         while (computedColRs.next()) {
@@ -305,7 +306,7 @@ object BulkCopyUtils extends Logging {
         val tableCols = getSchema(rs, JdbcDialects.get(url))
         val computedCols = getComputedCols(conn, dbtable)
 
-        val prefix = "Spark Dataframe and SQL Server table have differing"
+        val prefix = s"tableCols: $tableCols ....computedCols: $computedCols      Spark Dataframe and SQL Server table have differing "
 
         if (computedCols.length == 0) {
             assertIfCheckEnabled(dfCols.length == tableCols.length, strictSchemaCheck,

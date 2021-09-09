@@ -23,4 +23,21 @@ steps:
 - task: CmdLine@2
   inputs:
     script: |
-      ls
+      ls target
+
+# Publish
+- task: CopyFiles@2
+  inputs:
+    contents: 'target/*.jar'
+    targetFolder: $(Build.ArtifactStagingDirectory)
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'SoleyIoSqlSparkConnector'
+    publishLocation: 'Container'
+
+- script: |
+    echo Release pipeline will take care of deploying to DBFS.
+    echo Do not forget to restart your clusters and happy sparking.
+  displayName: 'Done'
