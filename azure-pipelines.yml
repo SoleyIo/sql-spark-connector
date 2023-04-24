@@ -12,6 +12,7 @@ pool:
 steps:
 - checkout: self
   persistCredentials: true
+  
 - task: Maven@3
   inputs:
     mavenPomFile: 'pom.xml'
