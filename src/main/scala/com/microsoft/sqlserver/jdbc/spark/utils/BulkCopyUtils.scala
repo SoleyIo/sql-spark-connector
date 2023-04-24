@@ -187,7 +187,8 @@ object BulkCopyUtils extends Logging {
     private[spark] def getComputedCols(
         conn: Connection, 
         table: String): List[String] = {
-        val queryStr = s"SELECT name FROM sys.computed_columns WHERE object_id = OBJECT_ID('${table}');"
+        val queryStr = s"SELECT name FROM sys.computed_columns WHERE object_id = OBJECT_ID('${table}') UNION " +
+                       s"SELECT name FROM sys.columns WHERE graph_type in (2) and object_id = OBJECT_ID('${table}');"
         val computedColRs = conn.createStatement.executeQuery(queryStr)
         val computedCols = ListBuffer[String]()
         while (computedColRs.next()) {
