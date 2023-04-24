@@ -306,7 +306,7 @@ object BulkCopyUtils extends Logging {
         val tableCols = getSchema(rs, JdbcDialects.get(url))
         val computedCols = getComputedCols(conn, dbtable)
 
-        val prefix = s"tableCols: $tableCols ....computedCols: $computedCols      Spark Dataframe and SQL Server table have differing "
+        val prefix = s"Spark Dataframe and SQL Server table have differing"
 
         if (computedCols.length == 0) {
             assertIfCheckEnabled(dfCols.length == tableCols.length, strictSchemaCheck,
