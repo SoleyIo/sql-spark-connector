@@ -13,15 +13,12 @@
 */
 package com.microsoft.sqlserver.jdbc.spark
 
-import java.sql.{Connection, ResultSet, SQLException}
-
+import com.microsoft.sqlserver.jdbc.spark.BulkCopyUtils._
+import com.microsoft.sqlserver.jdbc.spark.utils.JdbcUtils.createConnection
 import org.apache.spark.internal.Logging
-import org.apache.spark.sql.{SQLContext, DataFrame, SaveMode}
-import org.apache.spark.sql.execution.datasources.jdbc.JdbcUtils.createConnectionFactory
 import org.apache.spark.sql.execution.datasources.jdbc.JdbcRelationProvider
 import org.apache.spark.sql.sources.BaseRelation
-
-import com.microsoft.sqlserver.jdbc.spark.BulkCopyUtils._
+import org.apache.spark.sql.{DataFrame, SQLContext, SaveMode}
 
 /**
  * DefaultSource extends JDBCRelationProvider to provide a implmentation for MSSQLSpark connector.
@@ -52,8 +49,11 @@ class DefaultSource extends JdbcRelationProvider with Logging {
                     mode: SaveMode,
                     parameters: Map[String, String],
                     rawDf: DataFrame): BaseRelation = {
-        val options = new SQLServerBulkJdbcOptions(parameters)
-        val conn = createConnectionFactory(options)()
+        // set SQL Server session application name to SparkMSSQLConnector:user input name
+        // if no user input app name provided, will use SparkMSSQLConnector:NotSpecified
+        val applicationName = s"SparkMSSQLConnector:${parameters.getOrElse("applicationname", "NotSpecified")}"
+        val options = new SQLServerBulkJdbcOptions(parameters  + ("applicationname" -> applicationName))
+        val conn = createConnection(options)
         val df = repartitionDataFrame(rawDf, options)
 
         logInfo(s"JDBC Driver major/mior version " +
