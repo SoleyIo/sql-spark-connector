@@ -188,7 +188,8 @@ object BulkCopyUtils extends Logging {
         conn: Connection, 
         table: String): List[String] = {
         val queryStr = s"SELECT name FROM sys.computed_columns WHERE object_id = OBJECT_ID('${table}') UNION " +
-                       s"SELECT name FROM sys.columns WHERE graph_type in (2) and object_id = OBJECT_ID('${table}');"
+                       s"SELECT name FROM sys.columns WHERE default_object_id<>0 AND object_id = OBJECT_ID('${table}') UNION " +
+                       s"SELECT name FROM sys.columns WHERE graph_type in (2) AND object_id = OBJECT_ID('${table}');"
         val computedColRs = conn.createStatement.executeQuery(queryStr)
         val computedCols = ListBuffer[String]()
         while (computedColRs.next()) {
